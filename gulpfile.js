@@ -3,8 +3,6 @@
 var gulp = require('gulp');
 var gulpZip = require('gulp-zip');
 var gulpUnzip = require('gulp-unzip');
-var q = require('d3-queue');
-var exec = require('child-process-promise').exec;
 var spawn = require('cross-spawn');
 
 gulp.task('zip', function () {

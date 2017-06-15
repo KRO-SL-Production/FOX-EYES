@@ -1,12 +1,8 @@
 {
   "devDependencies": {
-    "child-process-promise": "^2.2.1",
-    "d3-queue": "^3.0.7",
     "gulp": "^3.9.1",
     "gulp-unzip": "^0.2.0",
-    "gulp-zip": "^4.0.0"
-  },
-  "dependencies": {
+    "gulp-zip": "^4.0.0",
     "cross-spawn": "^5.1.0"
   }
 }
