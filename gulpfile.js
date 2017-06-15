@@ -6,7 +6,7 @@ var gulpUnzip = require('gulp-unzip');
 var spawn = require('cross-spawn');
 
 gulp.task('zip', function () {
-    return gulp.src('src/design/*')
+    return gulp.src('src/design/**/*')
         .pipe(gulpZip('design.zip'))
         .pipe(gulp.dest('src'));
 });
