@@ -19,7 +19,7 @@ gulp.task('unzip', function () {
 
 gulp.task('save', ['zip'], function (cb) {
     spawn.sync('git', ['add', '.'], {stdio: 'inherit'});
-    spawn.sync('git', ['commit', '-m', '\'save\''], {stdio: 'inherit'});
+    spawn.sync('git', ['commit', '-m', 'update'], {stdio: 'inherit'});
     spawn.sync('git', ['push', 'origin', 'master:master'], {stdio: 'inherit'});
     cb();
 });
