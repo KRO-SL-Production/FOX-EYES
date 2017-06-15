@@ -3,6 +3,7 @@
 var gulp = require('gulp');
 var gulpZip = require('gulp-zip');
 var gulpUnzip = require('gulp-unzip');
+var q = require('queue')();
 var exec = require('child-process-promise').exec;
 
 gulp.task('zip', function () {
@@ -18,10 +19,10 @@ gulp.task('unzip', function () {
 });
 
 gulp.task('save', function (cb) {
-    exec('git add . && git commit -m \'save\'')
-        .then(function (result) {
-            console.log(result.stdout, result.stderr);
-            exec('git push origin master:master')
+
+    function due(command) {
+        return function (cb) {
+            exec(command)
                 .then(function (result) {
                     console.log(result.stdout, result.stderr);
                     cb();
@@ -29,8 +30,15 @@ gulp.task('save', function (cb) {
                 .catch(function (err) {
                     console.error('ERROR: ', err);
                 });
-        })
-        .catch(function (err) {
-            console.error('ERROR: ', err);
-        });
+        }
+    }
+
+    q.push(
+        due('git add .'),
+        due('git commit -m \'save\''),
+        due('git push origin master:master')
+    );
+    q.start(function (err) {
+        cb();
+    });
 });
