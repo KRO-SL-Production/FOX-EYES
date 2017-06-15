@@ -18,7 +18,7 @@ gulp.task('unzip', function () {
 });
 
 gulp.task('save', function (cb) {
-    exec('git add . && git commit -m "save & update && git push origin master:master"')
+    exec('git add . && git commit -m \'save\' && git push origin master:master')
         .then(function (result) {
             var stdout = result.stdout;
             var stderr = result.stderr;
