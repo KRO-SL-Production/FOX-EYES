@@ -21,10 +21,10 @@ gulp.task('save', function (cb) {
     exec('git add . && git commit -m \'save\'')
         .then(function (result) {
             console.log(result.stdout, result.stderr);
-            cb();
             exec('git push origin master:master')
                 .then(function (result) {
                     console.log(result.stdout, result.stderr);
+                    cb();
                 })
                 .catch(function (err) {
                     console.error('ERROR: ', err);
