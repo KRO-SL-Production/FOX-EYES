@@ -4,5 +4,23 @@
     "gulp-unzip": "^0.2.0",
     "gulp-zip": "^4.0.0",
     "cross-spawn": "^5.1.0"
-  }
+  },
+  "name": "fox-eyes",
+  "version": "1.0.0",
+  "description": "=[K.R.O]= FOX EYES for Kemono/M3A/M3V Head",
+  "main": "gulpfile.js",
+  "scripts": {
+    "save": "gulp save",
+    "work": "gulp unzip"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KRO-SL-Production/FOX-EYES.git"
+  },
+  "author": "kro.morror@yahoo.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KRO-SL-Production/FOX-EYES/issues"
+  },
+  "homepage": "https://github.com/KRO-SL-Production/FOX-EYES#readme"
 }
