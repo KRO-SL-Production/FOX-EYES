@@ -5,6 +5,7 @@ var gulpZip = require('gulp-zip');
 var gulpUnzip = require('gulp-unzip');
 var q = require('d3-queue');
 var exec = require('child-process-promise').exec;
+var spawn = require('cross-spawn');
 
 gulp.task('zip', function () {
     return gulp.src('src/design/*')
@@ -19,26 +20,8 @@ gulp.task('unzip', function () {
 });
 
 gulp.task('save', ['zip'], function (cb) {
-
-    function due(command, next) {
-        console.log('Run command: ' + command);
-        exec(command)
-            .then(function (result) {
-                console.log(result.stdout, result.stderr);
-                next();
-            })
-            .catch(function (err) {
-                console.error('ERROR: ', err);
-            });
-    }
-
-    q.queue()
-        .defer(due, 'git add .')
-        .defer(due, 'git commit -m \'save\'')
-        .defer(due, 'git push origin master:master')
-        .awaitAll(function (error) {
-            if (error) throw error;
-            console.log("Goodbye!");
-            cb();
-        });
+    spawn.sync('git', ['add', '.'], {stdio: 'inherit'});
+    spawn.sync('git', ['commit', '-m', '\'save\''], {stdio: 'inherit'});
+    spawn.sync('git', ['push', 'origin', 'master:master'], {stdio: 'inherit'});
+    cb();
 });
