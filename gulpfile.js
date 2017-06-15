@@ -18,14 +18,19 @@ gulp.task('unzip', function () {
 });
 
 gulp.task('save', function (cb) {
-    exec('git add . && git commit -m \'save\' && git push origin master:master')
+    exec('git add . && git commit -m \'save\'')
         .then(function (result) {
-            var stdout = result.stdout;
-            var stderr = result.stderr;
-            console.log('stdout: ', stdout);
-            console.log('stderr: ', stderr);
+            console.log(result.stdout, result.stderr);
+            cb();
+            exec('git push origin master:master')
+                .then(function (result) {
+                    console.log(result.stdout, result.stderr);
+                })
+                .catch(function (err) {
+                    console.error('ERROR: ', err);
+                });
         })
         .catch(function (err) {
             console.error('ERROR: ', err);
-        })
+        });
 });
